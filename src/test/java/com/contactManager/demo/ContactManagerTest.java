@@ -1,7 +1,6 @@
 package com.contactManager.demo;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContactManagerTest {
@@ -20,4 +19,14 @@ class ContactManagerTest {
 		assertEquals("0123456789", contact.getPhoneNumber());
 	}
 
+	@Test
+	public void shouldThrowExceptionWhenNumberIsInvalid() {
+		// Invalid data
+		Contact contact = new Contact("John", "Doe", "12345");
+
+		// This should throw an exception
+		assertThrows(RuntimeException.class, () -> {
+			contact.validatePhoneNumber();
+		});
+	}
 }
