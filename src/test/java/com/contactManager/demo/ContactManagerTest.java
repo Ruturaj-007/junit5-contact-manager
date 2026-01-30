@@ -29,4 +29,40 @@ class ContactManagerTest {
 			contact.validatePhoneNumber();
 		});
 	}
+
+	@Test
+	public void shouldThrowExceptionWhenNumberIsNull() {
+		Contact contact = new Contact("John", "Doe", null);
+
+		assertThrows(RuntimeException.class, () -> {
+			contact.validatePhoneNumber();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenNumberIsEmpty() {
+		Contact contact = new Contact("John", "Doe", "");
+
+		assertThrows(RuntimeException.class, () -> {
+			contact.validatePhoneNumber();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenPhoneNumberHasLetters() {
+		Contact contact = new Contact("John", "Doe", "012345678a");
+
+		assertThrows(RuntimeException.class, () -> {
+			contact.validatePhoneNumber();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenPhoneNumberDoesNotStartWith0() {
+		Contact contact = new Contact("John", "Doe", "9123456789");
+
+		assertThrows(RuntimeException.class, () -> {
+			contact.validatePhoneNumber();
+		});
+	}
 }
