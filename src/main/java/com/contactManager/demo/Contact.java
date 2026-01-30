@@ -41,6 +41,18 @@ public class Contact {
         }
     }
 
+     public void validateFirstName() {
+        if (this.firstName == null || this.firstName.isBlank()) {
+            throw new RuntimeException("First Name cannot be null or empty");
+        }
+     }
+
+    public void validateLastName() {
+        if (this.lastName == null || this.lastName.isBlank()) {
+            throw new RuntimeException("Last Name cannot be null or empty");
+        }
+    }
+
 
 }
 

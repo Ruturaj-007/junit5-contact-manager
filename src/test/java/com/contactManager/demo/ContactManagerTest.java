@@ -65,4 +65,44 @@ class ContactManagerTest {
 			contact.validatePhoneNumber();
 		});
 	}
+
+	@Test
+	public void shouldThrowExceptionWhenFirstNameIsNull() {
+		Contact contact = new Contact(null, "Doe", "0123456789");
+
+		assertThrows(RuntimeException.class, ()-> {
+			contact.validateFirstName();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenFirstNameIsBlank() {
+		Contact contact = new Contact("", "Doe", "0123456789");
+
+		assertThrows(RuntimeException.class, ()-> {
+			contact.validateFirstName();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenLastNameIsNull() {
+		Contact contact = new Contact("John", null, "0123456789");
+
+		assertThrows(RuntimeException.class, ()-> {
+			contact.validateLastName();
+		});
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenLastNameIsBlank() {
+		Contact contact = new Contact("John", "", "0123456789");
+
+		assertThrows(RuntimeException.class, ()-> {
+			contact.validateLastName();
+		});
+	}
+
+
+
+
 }
