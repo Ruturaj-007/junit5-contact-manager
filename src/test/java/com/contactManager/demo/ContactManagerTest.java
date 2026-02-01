@@ -1,12 +1,34 @@
 package com.contactManager.demo;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContactManagerTest {
 
+	private ContactManager contactManager;
+
+	@BeforeEach
+	public void setup() {
+		System.out.println("Instantiating Contact Manager");
+		contactManager =  new ContactManager();
+	}
+
+	@BeforeAll
+	public static void setupAll() {
+		System.out.println("===Starting all tests===");
+	}
+
 	@Test
 	public void shouldCreateContact() {
+		contactManager.addContact("John", "Doe", "0123456789");
+
+		assertFalse(contactManager.getAllContacts().isEmpty());
+		assertEquals(1, contactManager.getAllContacts().size());
+	}
+
+	@Test
+	public void shouldCreateContactObject() {
 		// Test data
 		String firstname = "John";
 		String lastname = "Doe";
@@ -17,6 +39,15 @@ class ContactManagerTest {
 		assertEquals("John", contact.getFirstName());
 		assertEquals("Doe", contact.getLastName());
 		assertEquals("0123456789", contact.getPhoneNumber());
+	}
+
+	@Test
+	public void shouldThrowExceptionWhenContactAlreadyExists() {
+		contactManager.addContact("John", "Doe", "0123456789");
+
+		assertThrows(RuntimeException.class, () -> {
+			contactManager.addContact("John", "Doe", "0123456789");
+		});
 	}
 
 	@Test
@@ -102,5 +133,13 @@ class ContactManagerTest {
 		});
 	}
 
+	@AfterEach
+	public void tearDown() {
+		System.out.println("Test Completed - cleaning up");
+	}
 
+	@AfterAll
+	public static void tearDownAll() {
+		System.out.println("===All tests Completed===");
+	}
 }
