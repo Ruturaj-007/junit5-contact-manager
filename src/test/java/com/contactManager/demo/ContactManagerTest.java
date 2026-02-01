@@ -1,7 +1,10 @@
 package com.contactManager.demo;
 
 import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Nested;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ContactManagerTest {
@@ -61,22 +64,37 @@ class ContactManagerTest {
 		});
 	}
 
-	@Test
-	public void shouldThrowExceptionWhenNumberIsNull() {
-		Contact contact = new Contact("John", "Doe", null);
+	@Nested
+	@DisplayName("Phone Number Validation Tests")
+	class PhoneNumberTests {
 
-		assertThrows(RuntimeException.class, () -> {
-			contact.validatePhoneNumber();
-		});
-	}
+		@Test
+		@DisplayName("Should throw exception when phone is null")
+		public void shouldThrowExceptionWhenNumberIsNull() {
+			Contact contact = new Contact("John", "Doe", null);
 
-	@Test
-	public void shouldThrowExceptionWhenNumberIsEmpty() {
-		Contact contact = new Contact("John", "Doe", "");
+			assertThrows(RuntimeException.class, () -> {
+				contact.validatePhoneNumber();
+			});
+		}
 
-		assertThrows(RuntimeException.class, () -> {
-			contact.validatePhoneNumber();
-		});
+		@Test
+		@DisplayName("Should throw exception when phone is empty")
+		public void shouldThrowExceptionWhenNumberIsEmpty() {
+			Contact contact = new Contact("John", "Doe", "");
+
+			assertThrows(RuntimeException.class, () -> {
+				contact.validatePhoneNumber();
+			});
+		}
+
+		@ParameterizedTest // run this tests multiple times
+		@ValueSource(strings = {"0123456789", "0987654321", "0111111111"})
+		@DisplayName("Should accept valid phone numbers")
+		public void ShouldAcceptValidPhoneNumbers(String phoneNumber) {
+			contactManager.addContact("John", "Doe", phoneNumber);
+			assertFalse(contactManager.getAllContacts().isEmpty());
+		}
 	}
 
 	@Test
@@ -130,6 +148,34 @@ class ContactManagerTest {
 
 		assertThrows(RuntimeException.class, ()-> {
 			contact.validateLastName();
+		});
+	}
+
+	@Test
+	@DisplayName("Should delete contact")
+	public void ShouldDeleteContact() {
+		contactManager.addContact("Raju", "Mistri", "0113456789");
+		contactManager.deleteContact("Raju", "Mistri");
+
+		assertEquals(0, contactManager.getAllContacts().size());
+	}
+
+	@ParameterizedTest
+	@CsvSource({
+			"John, Doe, 0123456789",
+			"Jane, Smith, 0987654321",
+			"Bob, Johnson, 0555555555"
+	})
+	public void ShouldCreateMultipleContacts(String firstName, String lastName, String phone) {
+		contactManager.addContact(firstName, lastName, phone);
+		assertFalse(contactManager.getAllContacts().isEmpty());
+	}
+
+	@Test
+	@DisplayName("Should throw exception when deleting non-existent contact")
+	public void shouldThrowExceptionWhenDeletingNonExistentContact() {
+		assertThrows(RuntimeException.class, () -> {
+			contactManager.deleteContact("NonExistent", "Person");
 		});
 	}
 

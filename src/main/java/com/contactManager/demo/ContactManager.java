@@ -35,4 +35,14 @@ public class ContactManager {
     private String generateKey(Contact contact) {
         return String.format("%s-%s", contact.getFirstName(), contact.getLastName());
     }
+
+    public void deleteContact(String firstName, String lastName){
+        String key = String.format("%s-%s", firstName, lastName);
+
+        if (!contactList.containsKey(key)) {
+            throw new RuntimeException("Contact does not exist");
+        }
+
+        contactList.remove(key);
+    }
 }
