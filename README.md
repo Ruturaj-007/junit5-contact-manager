@@ -2,6 +2,11 @@
 
 A comprehensive Java project demonstrating test-driven development (TDD) and advanced JUnit 5 testing techniques. Built as a learning exercise to master unit testing concepts for open-source contributions.
 
+# Contact Manager - JUnit 5 Testing Project
+![Java](https://img.shields.io/badge/Java-22-orange)
+![JUnit](https://img.shields.io/badge/JUnit-5.12.2-green)
+![Maven](https://img.shields.io/badge/Maven-Build-blue)
+![Tests](https://img.shields.io/badge/Tests-20%20Passing-success)
 ## Project Overview
 
 This project implements a simple contact management system with robust validation and comprehensive test coverage. The focus is on demonstrating JUnit 5 features and best practices rather than building a production application.
