@@ -1,6 +1,7 @@
 # Contact Manager - JUnit 5 Testing Project
 ![Java](https://img.shields.io/badge/Java-22-orange)
 ![JUnit](https://img.shields.io/badge/JUnit-5.12.2-green)
+![License](https://img.shields.io/badge/License-Educational-lightgrey)
 ![Maven](https://img.shields.io/badge/Maven-Build-blue)
 ![Tests](https://img.shields.io/badge/Tests-20%20Passing-success)
 ## Project Overview
