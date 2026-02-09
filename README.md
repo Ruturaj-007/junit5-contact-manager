@@ -1,9 +1,12 @@
 # Contact Manager - JUnit 5 Testing Project
-![Java](https://img.shields.io/badge/Java-22-orange)
+[![Tests](https://github.com/Ruturaj-007/junit5-contact-manager/workflows/Tests/badge.svg)](https://github.com/Ruturaj-007/junit5-contact-manager/actions)
+![Java](https://img.shields.io/badge/Java-17-orange)
 ![JUnit](https://img.shields.io/badge/JUnit-5.12.2-green)
 ![License](https://img.shields.io/badge/License-Educational-lightgrey)
 ![Maven](https://img.shields.io/badge/Maven-Build-blue)
 ![Tests](https://img.shields.io/badge/Tests-20%20Passing-success)
+# Contact Manager - JUnit 5 Testing Project
+
 ## Project Overview
 
 This project implements a simple contact management system with robust validation and comprehensive test coverage. The focus is on demonstrating JUnit 5 features and best practices rather than building a production application.
